@@ -226,6 +226,45 @@ def use_search_findall_sub_split():
     print(ret)
 
 
+def use_finditer():
+    """
+    使用finditer
+    :return:
+    """
+    # 示例用法
+    text = "abc123def456ghi789"
+    pattern = r"\d+"
+    matches = re.finditer(pattern, text)
+    try:
+        next(matches)  # 跳过第一个匹配项
+        second_match = next(matches)  # 获取第二个匹配项
+        print(second_match.group())
+    except StopIteration:
+        return None
+
+
+def number_generator(start=0):
+    while start <= 5:  # 无限循环，持续生成数字
+        yield start  # 程序在这里暂停，start值被return回来
+        start += 1
+    return
+
+
+def use_generator():
+    """
+    使用生成器，理解next
+    :return:
+    """
+    # # 示例使用
+    gen = number_generator()  # 创建生成器实例，从0开始
+    # print(gen)
+    # print(next(gen))  # 输出 0
+    # print(next(gen))  # 输出 1
+    # print(next(gen))  # 输出 2
+    for i in gen:
+        print(i)
+
+
 def greedy():
     s = "This is a number 234-235-22-423"
     ret = re.match(r".+?(\d+-\d+-\d+-\d+)", s)
@@ -244,5 +283,7 @@ if __name__ == '__main__':
     # more_alp()
     # start_end()
     # split_group()
-    # use_search_findall_sub_split()
-    greedy()
+    # use_search_findall_sub_split
+    # use_finditer()
+    use_generator()
+    # greedy()
